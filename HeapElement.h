@@ -1,3 +1,6 @@
+#ifndef HeapElement_h
+#define HeapElement_h
+
 class HeapElement
 {
 private:
@@ -11,3 +14,5 @@ public:
 
 	int getKey();
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Heap_h
+#define Heap_h
+
 #include <vector>
 #include "HeapElement.h"
 
@@ -18,3 +20,5 @@ public:
 	HeapElement pop();	// return and remove the top element
 	HeapElement pull(); // return the top element
 };
+
+#endif
