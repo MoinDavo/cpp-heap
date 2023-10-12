@@ -1,16 +1,13 @@
 class HeapElement
 {
 private:
-	/* data */
+	int key;
+	// type payload //if needed for later implementations
+
 public:
-	HeapElement(/* args */);
+	HeapElement();
+	HeapElement(int k);
 	~HeapElement();
+
+	int getKey();
 };
-
-HeapElement::HeapElement(/* args */)
-{
-}
-
-HeapElement::~HeapElement()
-{
-}
