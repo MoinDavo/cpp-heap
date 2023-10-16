@@ -2,26 +2,9 @@
 #include "Heap.h"
 #include "HeapElement.h"
 
-HeapElement Heap::pull() { return this->content[0]; }
-
-void Heap::addElement(HeapElement e)
-{
-	this->content.push_back(e);
-	this->heapify();
-}
-
-HeapElement Heap::pop()
-{
-	HeapElement tmp {this->content[0]};
-	swap(this->content[0], this->content.back());
-	this->content.pop_back();
-	heapify();
-	return tmp;
-}
-
 void Heap::heapify()
 {
-	for (int i = 0; i < this->content.size(); i++)
+	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
 	{
 		HeapElement parent{this->content[i]};
 		HeapElement left{this->content[(2 * i + 1)]};
@@ -52,3 +35,22 @@ void Heap::swap(HeapElement e1, HeapElement e2)
 	e1 = e2;
 	e2 = tmp;
 }
+
+void Heap::addElement(HeapElement e)
+{
+	this->content.push_back(e);
+	this->heapify();
+}
+
+HeapElement Heap::pop()
+{
+	HeapElement tmp{this->content[0]};
+	swap(this->content[0], this->content.back());
+	this->content.pop_back();
+	heapify();
+	return tmp;
+}
+
+HeapElement Heap::top() { return this->content[0]; }
+
+bool Heap::isEmpty() { return this->content.empty(); }
