@@ -1,6 +1,7 @@
 #include <vector>
-#include "Heap.h"
-#include "HeapElement.h"
+#include <cmath>
+#include "../include/Heap.h"
+#include "../include/HeapElement.h"
 
 // ----------------------------------------------
 // Constructors:
@@ -14,24 +15,24 @@ void Heap::heapify()
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
 	{
-		int leftInd{2 * i + 1}, rightInd{2 * i + 2};
+		int leftIdx{2 * i + 1}, rightIdx{2 * i + 2};
 		bool ignoreLeft{false}, ignoreRight{false};
 
 		// catch index out of bounds
-		if (leftInd > this->content.size() - 1)
+		if (leftIdx > this->content.size() - 1)
 		{
 			ignoreLeft = true;
-			leftInd = this->content.size() - 1;
+			leftIdx = this->content.size() - 1;
 		}
-		if (rightInd > this->content.size() - 1) 
+		if (rightIdx > this->content.size() - 1)
 		{
 			ignoreRight = true;
-			rightInd = this->content.size() - 1;
+			rightIdx = this->content.size() - 1;
 		}
 
 		HeapElement parent{this->content[i]};
-		HeapElement left{this->content[(2 * i + 1)]};
-		HeapElement right{this->content[(2 * i + 2)]};
+		HeapElement left{this->content[leftIdx]};
+		HeapElement right{this->content[rightIdx]};
 		bool swapped{false};
 
 		if (parent.getKey() < left.getKey() && !ignoreLeft)
@@ -49,6 +50,16 @@ void Heap::heapify()
 		{
 			i--;
 		}
+	}
+}
+
+void Heap::heapify2() // should be more efficient according to our AaD Prof. | not sure if it works though
+{
+	for (int i = this->content.size() + 1; i > 1; i--)
+	{
+		int parentIdx{std::floor((i - 1) / 2)};
+		this->swap(this->content[i], this->content[parentIdx]);
+		i = parentIdx;
 	}
 }
 
