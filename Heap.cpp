@@ -2,6 +2,14 @@
 #include "Heap.h"
 #include "HeapElement.h"
 
+// ----------------------------------------------
+// Constructors:
+// ----------------------------------------------
+Heap::Heap() {}
+
+// ----------------------------------------------
+// Private:
+// ----------------------------------------------
 void Heap::heapify()
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
@@ -36,6 +44,9 @@ void Heap::swap(HeapElement e1, HeapElement e2)
 	e2 = tmp;
 }
 
+// ----------------------------------------------
+// Public:
+// ----------------------------------------------
 void Heap::addElement(HeapElement e)
 {
 	this->content.push_back(e);
