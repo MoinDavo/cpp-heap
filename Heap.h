@@ -10,6 +10,7 @@ private:
 	std::vector<HeapElement> content;
 
 	void heapify();						 // sort an already existing heap
+										 // TODO: look into more efficient algo
 	void swap(HeapElement, HeapElement); // helper method for heapify()
 
 public:
