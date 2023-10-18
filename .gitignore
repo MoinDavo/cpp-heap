@@ -10,4 +10,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-#source: https://github.com/github/gitignore/blob/main/CMake.gitignore
+# ^ source: https://github.com/github/gitignore/blob/main/CMake.gitignore ^
+
+.vscode
