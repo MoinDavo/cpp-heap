@@ -1,10 +1,12 @@
-#include "../include/Heap.h"
+#include "src/Heap.h"
+#include "src/HeapElement.h"
 #include <iostream>
-
+ 
 int main(int argc, char const *argv[])
 {
 	Heap h;
 
+	/*
 	//test if heap works (i/o)
 	h.addElement(HeapElement(5));
 	h.addElement(HeapElement(1));
@@ -17,6 +19,7 @@ int main(int argc, char const *argv[])
 	std::cout << h.pop().getKey();
 	std::cout << h.pop().getKey();
 	std::cout << h.pop().getKey();
+	*/
 
 	return 0;
 }
