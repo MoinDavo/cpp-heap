@@ -1,7 +1,7 @@
 #include <vector>
 #include <cmath>
-#include "../include/Heap.h"
-#include "../include/HeapElement.h"
+#include "Heap.h"
+#include "HeapElement.h"
 
 // ----------------------------------------------
 // Constructors:
