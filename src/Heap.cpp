@@ -12,7 +12,7 @@ Heap::~Heap() {}
 // ----------------------------------------------
 // Private:
 // ----------------------------------------------
-void Heap::heapify()
+void Heap::heapify2() // this doesn't work ...
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
 	{
@@ -54,7 +54,7 @@ void Heap::heapify()
 	}
 }
 
-void Heap::heapify2() // should be more efficient according to our AaD Prof. | not sure if it works though
+void Heap::heapify() // should be more efficient according to our AaD Prof. | not sure if it works though
 {
 	for (int i = this->content.size() + 1; i > 1; i--)
 	{
