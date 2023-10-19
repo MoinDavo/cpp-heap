@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <iostream>
 #include "Heap.h"
 #include "HeapElement.h"
 
@@ -54,7 +55,7 @@ void Heap::heapify2() // this doesn't work ...
 	}
 }
 
-void Heap::heapify() // should be more efficient
+/*void Heap::heapify() // should be more efficient
 {
 	for (int i = this->content.size() + 1; i > 1; i--)
 	{
@@ -63,6 +64,10 @@ void Heap::heapify() // should be more efficient
 		this->swap(this->content[i], this->content[parentIdx]);
 		i = parentIdx;
 	}
+}*/
+
+void Heap::heapify() {
+	int 
 }
 
 void Heap::swap(HeapElement &e1, HeapElement &e2)
@@ -93,3 +98,12 @@ HeapElement Heap::pop()
 HeapElement Heap::top() { return this->content[0]; }
 
 bool Heap::isEmpty() { return this->content.empty(); }
+
+void Heap::printHeap()
+{
+	for (size_t i = 0; i < this->content.size() - 1; i++)
+	{
+		std::cout << std::to_string(this->content[i].getKey()) << ", ";
+	}
+	std::cout << std::to_string(this->content[this->content.size() - 2].getKey()) << "\n";
+}

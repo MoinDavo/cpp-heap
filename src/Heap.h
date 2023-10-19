@@ -9,9 +9,9 @@ class Heap // binary max-heap
 private:
 	std::vector<HeapElement> content;
 
-	void heapify();						 // sort an already existing heap
-	void heapify2();					 // sort an already existing heap (should be more efficient)
-	void swap(HeapElement&, HeapElement&); // helper method for heapify()
+	void heapify();							 // sort an already existing heap
+	void heapify2();						 // sort an already existing heap (should be more efficient)
+	void swap(HeapElement &, HeapElement &); // helper method for heapify()
 
 public:
 	Heap();
@@ -21,6 +21,8 @@ public:
 	HeapElement pop();			  // return and remove the top element
 	HeapElement top();			  // return the top element
 	bool isEmpty();				  // return if heap is empty (contains no elements)
+
+	void printHeap();
 };
 
 #endif
