@@ -54,11 +54,12 @@ void Heap::heapify2() // this doesn't work ...
 	}
 }
 
-void Heap::heapify() // should be more efficient according to our AaD Prof. | not sure if it works though
+void Heap::heapify() // should be more efficient
 {
 	for (int i = this->content.size() + 1; i > 1; i--)
 	{
-		int parentIdx{std::floor((i - 1) / 2)};
+		// int parentIdx{std::floor((i - 1) / 2)};
+		int parentIdx{(i - 1) / 2};
 		this->swap(this->content[i], this->content[parentIdx]);
 		i = parentIdx;
 	}
