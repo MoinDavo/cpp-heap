@@ -64,7 +64,7 @@ void Heap::heapify() // should be more efficient according to our AaD Prof. | no
 	}
 }
 
-void Heap::swap(HeapElement e1, HeapElement e2)
+void Heap::swap(HeapElement &e1, HeapElement &e2)
 {
 	HeapElement tmp{e1};
 	e1 = e2;
