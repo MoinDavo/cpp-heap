@@ -28,6 +28,7 @@ int main(int argc, char const *argv[])
 			  << "is: \n";
 	h.printHeap();
 	
+	// TODO: fix seg fault
 	/*
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
