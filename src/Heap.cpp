@@ -7,12 +7,25 @@
 // ----------------------------------------------
 // Constructors:
 // ----------------------------------------------
+
 Heap::Heap() {}
 Heap::~Heap() {}
 
 // ----------------------------------------------
 // Private:
 // ----------------------------------------------
+
+void Heap::heapify() // should be more efficient
+{
+	for (int i = this->content.size() + 1; i > 1; i--)
+	{
+		// int parentIdx{std::floor((i - 1) / 2)};
+		int parentIdx{(i - 1) / 2};
+		this->swap(this->content[i], this->content[parentIdx]);
+		i = parentIdx;
+	}
+}
+
 void Heap::heapify2() // this doesn't work ...
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
@@ -55,19 +68,36 @@ void Heap::heapify2() // this doesn't work ...
 	}
 }
 
-/*void Heap::heapify() // should be more efficient
+// TODO: fix segfault
+/*
+ * @param i index for which the heap shall be restored
+ */
+void Heap::heapifyI(int i) // segmentation fault ...
 {
-	for (int i = this->content.size() + 1; i > 1; i--)
-	{
-		// int parentIdx{std::floor((i - 1) / 2)};
-		int parentIdx{(i - 1) / 2};
-		this->swap(this->content[i], this->content[parentIdx]);
-		i = parentIdx;
-	}
-}*/
+	int l{i}, r{i}; // are these indexes or keys?
+	int largest;
 
-void Heap::heapify() {
-	int 
+
+	if (l <= this->content.size()-1 && this->content[l].getKey() > this->content[i].getKey())
+	{
+		largest = l;
+	}
+	else
+	{
+		largest = i;
+	}
+
+	if (r <= this->content.size()-1 && this->content[r].getKey() > this->content[largest].getKey())
+	{
+		largest = r;
+	}
+
+	if (largest != i)
+	{
+		this->swap(this->content[i], this->content[largest]);
+	}
+	this->heapifyI(largest); // could this cause the segfault
+
 }
 
 void Heap::swap(HeapElement &e1, HeapElement &e2)
@@ -77,21 +107,28 @@ void Heap::swap(HeapElement &e1, HeapElement &e2)
 	e2 = tmp;
 }
 
+
 // ----------------------------------------------
 // Public:
 // ----------------------------------------------
+
 void Heap::addElement(HeapElement e)
 {
 	this->content.push_back(e);
 	this->heapify();
+	//this->heapifyI(this->content.back());
 }
 
 HeapElement Heap::pop()
 {
 	HeapElement tmp{this->content[0]};
+	std::cout << "1 \n";
 	swap(this->content[0], this->content.back());
+	std::cout << "2 \n";
 	this->content.pop_back();
-	heapify();
+	std::cout << "3 \n";
+	heapifyI(this->content.size()-1);
+	std::cout << "4 \n";
 	return tmp;
 }
 

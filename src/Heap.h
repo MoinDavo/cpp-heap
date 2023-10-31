@@ -11,6 +11,7 @@ private:
 
 	void heapify();							 // sort an already existing heap
 	void heapify2();						 // sort an already existing heap (should be more efficient)
+	void heapifyI(int);						 // sort an already existing heap
 	void swap(HeapElement &, HeapElement &); // helper method for heapify()
 
 public:
