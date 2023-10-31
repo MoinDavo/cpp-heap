@@ -127,7 +127,7 @@ HeapElement Heap::pop()
 	std::cout << "2 \n";
 	this->content.pop_back();
 	std::cout << "3 \n";
-	heapifyI(this->content.size()-1);
+	heapifyI(this->content.size()-1); // on nativ linux -> segfault | on wsl -> stops here
 	std::cout << "4 \n";
 	return tmp;
 }

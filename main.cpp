@@ -33,7 +33,6 @@ int main(int argc, char const *argv[])
 	h.printHeap();
 	*/
 	
-	// TODO: fix seg fault
 	/*
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
