@@ -10,6 +10,7 @@ private:
 public:
 	HeapElement();
 	HeapElement(int k);
+	HeapElement(const HeapElement &e);
 	~HeapElement();
 
 	int getKey();
