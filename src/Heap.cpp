@@ -17,11 +17,18 @@ Heap::~Heap() {}
 
 void Heap::heapify() // should be more efficient
 {
-	for (int i = this->content.size() + 1; i > 1; i--)
+	int contentSize{this->content.size()};
+	if (this->content.size() < 1)
 	{
-		// int parentIdx{std::floor((i - 1) / 2)};
+		return;
+	}
+	for (int i = this->content.size(); i > 1; i--)
+	{
 		int parentIdx{(i - 1) / 2};
-		this->swap(this->content[i], this->content[parentIdx]);
+		if (this->content[i].getKey() > this->content[parentIdx].getKey())
+		{
+			this->swap(this->content[i], this->content[parentIdx]);
+		}
 		i = parentIdx;
 	}
 }
@@ -72,19 +79,15 @@ void Heap::heapify2() // this doesn't work ...
 /*
  * @param i index for which the heap shall be restored
  */
-void Heap::heapifyI(int i) // segmentation fault ...
+void Heap::heapifyI(int i)
 {
-	int l{i}, r{i}; // are these indexes or keys?
-	int largest;
-
+	
+	int largest{i};
+	int l{2 * i + 1}, r{2 * i + 2};
 
 	if (l <= this->content.size()-1 && this->content[l].getKey() > this->content[i].getKey())
 	{
 		largest = l;
-	}
-	else
-	{
-		largest = i;
 	}
 
 	if (r <= this->content.size()-1 && this->content[r].getKey() > this->content[largest].getKey())
@@ -95,9 +98,8 @@ void Heap::heapifyI(int i) // segmentation fault ...
 	if (largest != i)
 	{
 		this->swap(this->content[i], this->content[largest]);
+		this->heapifyI(largest); // could this cause the segfault? no it does cause an endless loop XD
 	}
-	this->heapifyI(largest); // could this cause the segfault
-
 }
 
 void Heap::swap(HeapElement &e1, HeapElement &e2)
@@ -112,7 +114,7 @@ void Heap::swap(HeapElement &e1, HeapElement &e2)
 // Public:
 // ----------------------------------------------
 
-void Heap::addElement(HeapElement e)
+void Heap::addElement(const HeapElement &e)
 {
 	this->content.push_back(e);
 	this->heapify();
@@ -122,13 +124,12 @@ void Heap::addElement(HeapElement e)
 HeapElement Heap::pop()
 {
 	HeapElement tmp{this->content[0]};
-	std::cout << "1 \n";
 	swap(this->content[0], this->content.back());
-	std::cout << "2 \n";
 	this->content.pop_back();
-	std::cout << "3 \n";
-	heapifyI(this->content.size()-1); // on nativ linux -> segfault | on wsl -> stops here
-	std::cout << "4 \n";
+	if (!this->content.empty())
+	{
+		heapifyI(this->content.size()-1); // on nativ linux -> segfault | on wsl -> stops here
+	}
 	return tmp;
 }
 
@@ -138,9 +139,9 @@ bool Heap::isEmpty() { return this->content.empty(); }
 
 void Heap::printHeap()
 {
-	for (size_t i = 0; i < this->content.size() - 1; i++)
+	for (size_t i = 0; i < this->content.size(); i++)
 	{
 		std::cout << std::to_string(this->content[i].getKey()) << ", ";
 	}
-	std::cout << std::to_string(this->content[this->content.size() - 2].getKey()) << "\n";
+	std::cout << "\n";
 }
