@@ -15,6 +15,9 @@ Heap::~Heap() {}
 // Private:
 // ----------------------------------------------
 
+/*
+* restores the max-heap property
+*/
 void Heap::heapify() // should be more efficient
 {
 	if (this->content.size() < 1)
@@ -32,6 +35,10 @@ void Heap::heapify() // should be more efficient
 	}
 }
 
+
+/*
+* restores the max-heap property
+*/
 void Heap::heapify2()
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
@@ -75,7 +82,7 @@ void Heap::heapify2()
 }
 
 /*
- * restore max-heap from i;
+ * restores the max-heap property from i;
  * this only works if heap property is not fulfilled at one index
  * @param i index from which the heap shall be restored
  */
@@ -102,6 +109,11 @@ void Heap::heapifyRecursive(int i)
 	}
 }
 
+/*
+* swaps two elements within the heap
+* @param e1 heap element to swap with other
+* @param e2 heap element to swap with other
+*/
 void Heap::swap(HeapElement &e1, HeapElement &e2)
 {
 	HeapElement tmp{e1};
@@ -114,6 +126,9 @@ void Heap::swap(HeapElement &e1, HeapElement &e2)
 // Public:
 // ----------------------------------------------
 
+/*
+* adds a supplied element to the heap and sorts it to the right position
+*/
 void Heap::addElement(const HeapElement &e)
 {
 	this->content.push_back(e);
@@ -121,6 +136,10 @@ void Heap::addElement(const HeapElement &e)
 	//this->heapifyI(this->content.back());
 }
 
+
+/*
+* returns and deletes the root/top element of the heap
+*/
 HeapElement Heap::pop()
 {
 	HeapElement tmp{this->content[0]};
@@ -133,10 +152,20 @@ HeapElement Heap::pop()
 	return tmp;
 }
 
+
+/*
+* returns the root/top element of the heap
+*/
 HeapElement Heap::top() { return this->content[0]; }
 
+/*
+* returns if the heap is empty
+*/
 bool Heap::isEmpty() { return this->content.empty(); }
 
+/*
+* output the heap contents to the cmdl
+*/
 void Heap::printHeap()
 {
 	for (size_t i = 0; i < this->content.size(); i++)
