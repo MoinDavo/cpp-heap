@@ -17,7 +17,6 @@ Heap::~Heap() {}
 
 void Heap::heapify() // should be more efficient
 {
-	int contentSize{this->content.size()};
 	if (this->content.size() < 1)
 	{
 		return;
@@ -33,7 +32,7 @@ void Heap::heapify() // should be more efficient
 	}
 }
 
-void Heap::heapify2() // this doesn't work ...
+void Heap::heapify2()
 {
 	for (int i = 0; i < this->content.size(); i++) // work from top to bottom
 	{
@@ -75,11 +74,12 @@ void Heap::heapify2() // this doesn't work ...
 	}
 }
 
-// TODO: fix segfault
 /*
- * @param i index for which the heap shall be restored
+ * restore max-heap from i;
+ * this only works if heap property is not fulfilled at one index
+ * @param i index from which the heap shall be restored
  */
-void Heap::heapifyI(int i)
+void Heap::heapifyRecursive(int i)
 {
 	
 	int largest{i};
@@ -98,7 +98,7 @@ void Heap::heapifyI(int i)
 	if (largest != i)
 	{
 		this->swap(this->content[i], this->content[largest]);
-		this->heapifyI(largest); // could this cause the segfault? no it does cause an endless loop XD
+		this->heapifyRecursive(largest); // could this cause the segfault? no it does cause an endless loop XD
 	}
 }
 
@@ -128,7 +128,7 @@ HeapElement Heap::pop()
 	this->content.pop_back();
 	if (!this->content.empty())
 	{
-		heapifyI(this->content.size()-1); // on nativ linux -> segfault | on wsl -> stops here
+		heapifyRecursive(this->content.size()-1); // on nativ linux -> segfault | on wsl -> stops here
 	}
 	return tmp;
 }
