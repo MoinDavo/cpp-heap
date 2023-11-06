@@ -12,6 +12,8 @@ private:
 	void heapify();							 // sort an already existing heap
 	void heapify2();						 // sort an already existing heap
 	void heapifyRecursive(int);				 // sort an already existing heap from supplied index
+	void heapifyRecursiveFixed(int);		 // sort an existing heap where with the specified index as root
+	void heapifyLoopFixed();				 // sort already existing heap from the leaves up using a loop
 	void swap(HeapElement &, HeapElement &); // helper method for heapify()
 
 public:

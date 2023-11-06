@@ -27,13 +27,11 @@ int main(int argc, char const *argv[])
 			  << "5, 4, 3, 2, 1\n"
 			  << "is: \n";
 	h.printHeap();
-	
+
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << ", ";
 	std::cout << std::to_string(h.pop().getKey()) << "\n";
-	
-
 	return 0;
 }
