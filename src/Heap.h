@@ -24,8 +24,6 @@ public:
 	HeapElement pop();					  // return and remove the top element
 	HeapElement top();					  // return the top element
 	bool isEmpty();						  // return if heap is empty (contains no elements)
-
-	void printHeap();
 };
 
 #endif

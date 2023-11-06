@@ -1,5 +1,4 @@
 #include <vector>
-#include <cmath>
 #include <iostream>
 #include "Heap.h"
 #include "HeapElement.h"
@@ -24,14 +23,15 @@ void Heap::heapify() // should be more efficient
 	{
 		return;
 	}
-	for (int i = this->content.size(); i > 1; i--)
+
+	for (int i = this->content.size() - 1; i >= 1; i--)
 	{
 		int parentIdx{(i - 1) / 2};
+
 		if (this->content[i].getKey() > this->content[parentIdx].getKey())
 		{
 			this->swap(this->content[i], this->content[parentIdx]);
 		}
-		i = parentIdx;
 	}
 }
 
@@ -60,7 +60,7 @@ void Heap::heapifyRecursiveFixed(int index)
 	}
 }
 
-void Heap::heapifyLoopFixed()
+/*void Heap::heapifyLoopFixed()
 {
 
 	// get the lowest leaf
@@ -90,7 +90,7 @@ void Heap::heapifyLoopFixed()
 
 		i--;
 	}
-}
+}*/
 
 /*
  * restores the max-heap property
@@ -188,7 +188,7 @@ void Heap::addElement(const HeapElement &e)
 {
 	this->content.push_back(e);
 	// this->heapifyRecursiveFixed(0); // uses a recursive call from the root down
-	this->heapifyLoopFixed(); // loops the elements from the leafes up
+	this->heapify(); // loops the elements from the leafes up
 }
 
 /*
@@ -200,7 +200,7 @@ HeapElement Heap::pop()
 	swap(this->content[0], this->content.back());
 	this->content.pop_back();
 	// heapifyRecursiveFixed(0); // uses a recursive call from the root down
-	heapifyLoopFixed(); // loops the elements from the leafes up
+	heapify(); // loops the elements from the leafes up
 	return tmp;
 }
 
@@ -213,15 +213,3 @@ HeapElement Heap::top() { return this->content[0]; }
  * returns if the heap is empty
  */
 bool Heap::isEmpty() { return this->content.empty(); }
-
-/*
- * output the heap contents to the cmdl
- */
-void Heap::printHeap()
-{
-	for (size_t i = 0; i < this->content.size(); i++)
-	{
-		std::cout << std::to_string(this->content[i].getKey()) << ", ";
-	}
-	std::cout << "\n";
-}
